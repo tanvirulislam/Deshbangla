@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_null_comparison
 
+import 'package:deshbangla_fatch_api/const.dart';
 import 'package:deshbangla_fatch_api/model/category_model.dart';
 import 'package:deshbangla_fatch_api/model/product_model.dart';
 import 'package:deshbangla_fatch_api/screens/banner.dart';
@@ -21,17 +22,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<Product> getProductData() async {
-    var response = await http.get(
-        Uri.parse('https://webhook.site/5612aa9e-dcde-49fd-b05e-562850d3a599'));
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-      return Product.fromJson(data);
-    } else {
-      return Product.fromJson(data);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -131,12 +121,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 future: getProductData(),
                 builder:
                     (BuildContext context, AsyncSnapshot<Product> snapshot) {
-                  if (snapshot.hasData == null) {
+                  if (snapshot.data == null) {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
                   } else {
-                    return Text('data');
+                    return GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      itemCount: snapshot.data!.data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          color: primaryColor,
+                        );
+                      },
+                    );
                   }
                 },
               ),

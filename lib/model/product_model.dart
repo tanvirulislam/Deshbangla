@@ -2,6 +2,7 @@
 //
 //     final product = productFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 Product productFromJson(String str) => Product.fromJson(json.decode(str));
@@ -15,9 +16,9 @@ class Product {
     required this.meta,
   });
 
-  final List<Datum> data;
-  final Links links;
-  final Meta meta;
+  List<Datum> data;
+  Links links;
+  Meta meta;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
@@ -48,18 +49,18 @@ class Datum {
     required this.href,
   });
 
-  final int id;
-  final String catSlug;
-  final String itemName;
-  final String itemSlug;
-  final String itemImage;
-  final String itemWeight;
-  final String itemDes;
-  final dynamic purchasePrice;
-  final String sellPrice;
-  final dynamic stock;
-  final String itemStatus;
-  final Href href;
+  int id;
+  String catSlug;
+  String itemName;
+  String itemSlug;
+  String itemImage;
+  String itemWeight;
+  String itemDes;
+  dynamic purchasePrice;
+  String sellPrice;
+  dynamic stock;
+  String itemStatus;
+  Href href;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
@@ -97,7 +98,7 @@ class Href {
     required this.link,
   });
 
-  final String link;
+  String link;
 
   factory Href.fromJson(Map<String, dynamic> json) => Href(
         link: json["link"],
@@ -116,10 +117,10 @@ class Links {
     required this.next,
   });
 
-  final String first;
-  final String last;
-  final dynamic prev;
-  final String next;
+  String first;
+  String last;
+  dynamic prev;
+  String next;
 
   factory Links.fromJson(Map<String, dynamic> json) => Links(
         first: json["first"],
@@ -147,13 +148,13 @@ class Meta {
     required this.total,
   });
 
-  final int currentPage;
-  final int from;
-  final int lastPage;
-  final String path;
-  final int perPage;
-  final int to;
-  final int total;
+  int currentPage;
+  int from;
+  int lastPage;
+  String path;
+  int perPage;
+  int to;
+  int total;
 
   factory Meta.fromJson(Map<String, dynamic> json) => Meta(
         currentPage: json["current_page"],
