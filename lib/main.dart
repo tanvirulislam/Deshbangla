@@ -1,9 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:deshbangla_fatch_api/const.dart';
-import 'package:deshbangla_fatch_api/screens/banner.dart';
 import 'package:deshbangla_fatch_api/screens/home.dart';
-import 'package:deshbangla_fatch_api/model/category_model.dart';
 import 'package:flutter/material.dart';
 
 void main() {

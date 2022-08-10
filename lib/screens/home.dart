@@ -1,18 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_null_comparison
 
-import 'package:deshbangla_fatch_api/const.dart';
 import 'package:deshbangla_fatch_api/model/category_model.dart';
 import 'package:deshbangla_fatch_api/model/product_model.dart';
 import 'package:deshbangla_fatch_api/screens/banner.dart';
+import 'package:deshbangla_fatch_api/screens/drawer.dart';
 import 'package:deshbangla_fatch_api/services/category.dart';
 import 'package:deshbangla_fatch_api/services/product.dart';
 import 'package:deshbangla_fatch_api/widgets/appbar.dart';
 import 'package:deshbangla_fatch_api/widgets/button.dart';
 import 'package:deshbangla_fatch_api/widgets/text_field.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,10 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: PreferredSize(
-          preferredSize: Size(MediaQuery.of(context).size.width, 70),
+          preferredSize: Size(
+            MediaQuery.of(context).size.width,
+            70,
+          ),
           child: AppbarCustome(),
         ),
-        drawer: Drawer(),
+        drawer: DrawerScreen(),
         body: ListView(
           children: [
             SliderDeshbangla(),
@@ -115,32 +115,63 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            SizedBox(
-              height: 400,
-              child: FutureBuilder(
-                future: getProductData(),
-                builder:
-                    (BuildContext context, AsyncSnapshot<Product> snapshot) {
-                  if (snapshot.data == null) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
+            Center(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: TextCustome(text: 'Top SELLING'),
+            )),
+            FutureBuilder(
+              future: getProductData(),
+              builder: (BuildContext context, AsyncSnapshot<Product> snapshot) {
+                if (snapshot.data == null) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return Container(
+                    margin: EdgeInsets.only(left: 8, right: 8),
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: screenSize.width < 400 ? 2 : 4,
                       ),
                       itemCount: snapshot.data!.data.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          color: primaryColor,
+                        return Card(
+                          elevation: 4,
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: screenSize.width,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                          snapshot.data!.data[index].itemImage),
+                                    ),
+                                  ),
+                                ),
+                                TextCustome(
+                                    text: snapshot.data!.data[index].itemName),
+                                Text(
+                                    "${snapshot.data!.data[index].sellPrice}TK / KG"),
+                                TextButton.icon(
+                                    onPressed: () {},
+                                    icon: Icon(Icons.shopping_cart_outlined),
+                                    label: TextCustome(text: 'Add to cart'))
+                              ],
+                            ),
+                          ),
                         );
                       },
-                    );
-                  }
-                },
-              ),
+                    ),
+                  );
+                }
+              },
             )
           ],
         ),

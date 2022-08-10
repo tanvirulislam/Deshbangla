@@ -11,10 +11,10 @@ Widget SliderDeshbangla() {
   ];
 
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 8),
+    padding: const EdgeInsets.symmetric(horizontal: 5),
     child: Container(
       margin: EdgeInsets.only(top: 10),
-      height: 180,
+      height: 200,
       width: 300,
       child: CarouselSlider(
         options: CarouselOptions(
