@@ -15,7 +15,6 @@ import 'package:deshbangla_fatch_api/widgets/category_shimmer.dart';
 import 'package:deshbangla_fatch_api/widgets/text_field.dart';
 import 'package:deshbangla_fatch_api/widgets/top_selling_shimmer.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,8 +26,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    String image;
-    String name;
     Size screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -55,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(
-              height: 175,
+              height: 160,
               child: FutureBuilder(
                 future: getCategoryData(),
                 builder:
@@ -63,66 +60,66 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (snapshot.data == null) {
                     return CategoryShimmer();
                   } else {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: snapshot.data!.data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 175,
-                              width: screenSize.width / 3,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(13),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 7,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    onTap: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => CategoryProduct(
-                                            categoryImage: snapshot
-                                                .data!.data[index].image,
-                                            categoryName:
-                                                snapshot.data!.data[index].name,
-                                          ),
-                                        )),
-                                    child: Container(
-                                      height: 100,
-                                      width:
-                                          MediaQuery.of(context).size.width / 3,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(13),
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                              snapshot.data!.data[index].image),
-                                          fit: BoxFit.cover,
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: snapshot.data!.data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            // height: 175,
+                            width: screenSize.width < 400
+                                ? screenSize.width / 3
+                                : screenSize.width / 4,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(13),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 3,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => CategoryProduct(
+                                          categoryImage:
+                                              snapshot.data!.data[index].image,
+                                          categoryName:
+                                              snapshot.data!.data[index].name,
                                         ),
+                                      )),
+                                  child: Container(
+                                    height: 110,
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(13),
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                            snapshot.data!.data[index].image),
+                                        fit: BoxFit.fill,
                                       ),
                                     ),
                                   ),
-                                  TextCustome(
-                                      text: snapshot.data!.data[index].name)
-                                ],
-                              ),
+                                ),
+                                SizedBox(height: 8),
+                                TextCustome(
+                                    text: snapshot.data!.data[index].name)
+                              ],
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     );
                   }
                 },
@@ -153,6 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemCount: snapshot.data!.data.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Card(
+                          // margin: EdgeInsets.all(value),
                           elevation: 4,
                           child: Container(
                             alignment: Alignment.center,

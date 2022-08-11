@@ -8,12 +8,18 @@ Widget SliderDeshbangla() {
   List<String> sliderPhoto = [
     'assets/banner1.jpg',
     'assets/banner2.jpg',
+    'assets/banner3.jpg',
+  ];
+
+  List<String> sliderTitle = [
+    'dfdfdfdf',
+    'dfdfdfdf',
   ];
 
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 5),
     child: Container(
-      margin: EdgeInsets.only(top: 10),
+      margin: EdgeInsets.only(top: 5),
       height: 200,
       width: 300,
       child: CarouselSlider(
@@ -28,7 +34,7 @@ Widget SliderDeshbangla() {
           autoPlayInterval: Duration(seconds: 3),
           autoPlayAnimationDuration: Duration(milliseconds: 800),
           autoPlayCurve: Curves.fastOutSlowIn,
-          enlargeCenterPage: true,
+          enlargeCenterPage: false,
           scrollDirection: Axis.horizontal,
         ),
         items: sliderPhoto.map((i) {
@@ -40,7 +46,7 @@ Widget SliderDeshbangla() {
                   width: MediaQuery.of(context).size.width,
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
                     child: Row(
                       children: [
                         Expanded(
@@ -48,8 +54,10 @@ Widget SliderDeshbangla() {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Ilish is on of the delicious',
-                                style: TextStyle(color: Colors.lightGreen)),
+                            Text(
+                              'To provide you all type of Fish and Shrimp',
+                              style: TextStyle(color: Colors.lightGreen),
+                            ),
                             SizedBox(
                               height: 65,
                               width: MediaQuery.of(context).size.width,

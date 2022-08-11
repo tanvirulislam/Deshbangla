@@ -26,6 +26,8 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
+    bool isBool = false;
+    print(isBool);
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -80,8 +82,14 @@ class _ProductDetailsState extends State<ProductDetails> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.favorite_outline),
+                  onPressed: () {
+                    setState(() {
+                      isBool = !isBool;
+                    });
+                  },
+                  icon: isBool == false
+                      ? Icon(Icons.favorite_outline)
+                      : Icon(Icons.favorite),
                   label: TextCustome(text: 'Add To Favorite'),
                   style: TextButton.styleFrom(padding: EdgeInsets.all(0)),
                 ),
@@ -89,6 +97,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   onPressed: () {},
                   icon: Icon(Icons.share_outlined),
                   label: TextCustome(text: 'Share'),
+                  style: TextButton.styleFrom(padding: EdgeInsets.all(0)),
                 )
               ],
             ),
