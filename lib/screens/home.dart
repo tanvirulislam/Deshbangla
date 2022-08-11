@@ -3,6 +3,7 @@
 import 'package:deshbangla_fatch_api/model/category_model.dart';
 import 'package:deshbangla_fatch_api/model/product_model.dart';
 import 'package:deshbangla_fatch_api/screens/banner.dart';
+import 'package:deshbangla_fatch_api/screens/category_product.dart';
 import 'package:deshbangla_fatch_api/screens/drawer.dart';
 import 'package:deshbangla_fatch_api/services/category.dart';
 import 'package:deshbangla_fatch_api/services/product.dart';
@@ -21,6 +22,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    String image;
+    String name;
     Size screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -86,22 +89,35 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        height: 100,
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                3,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(13),
-                                          image: DecorationImage(
-                                            image: NetworkImage(snapshot
-                                                .data!.data[index].image),
-                                            fit: BoxFit.fill,
+                                      child: InkWell(
+                                        onTap: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CategoryProduct(
+                                                categoryImage: snapshot
+                                                    .data!.data[index].image,
+                                                categoryName: snapshot
+                                                    .data!.data[index].name,
+                                              ),
+                                            )),
+                                        child: Container(
+                                          height: 100,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              3,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(13),
+                                            image: DecorationImage(
+                                              image: NetworkImage(snapshot
+                                                  .data!.data[index].image),
+                                              fit: BoxFit.fill,
+                                            ),
                                           ),
                                         ),
                                       )),
-                                  // Text(snapshot.data!.data[index].name),
                                   TextCustome(
                                       text: snapshot.data!.data[index].name)
                                 ],
