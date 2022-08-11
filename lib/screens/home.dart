@@ -156,43 +156,61 @@ class _HomeScreenState extends State<HomeScreen> {
                             alignment: Alignment.center,
                             child: Column(
                               children: [
-                                InkWell(
-                                  onTap: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ProductDetails(
-                                          productName: snapshot
-                                              .data!.data[index].itemName
-                                              .toString(),
-                                          productImage: snapshot
-                                              .data!.data[index].itemImage,
-                                          productPrice: snapshot
-                                              .data!.data[index].sellPrice,
-                                          productDescription: snapshot
-                                              .data!.data[index].itemDes,
+                                Stack(
+                                  alignment: Alignment(1, -1),
+                                  children: [
+                                    InkWell(
+                                      onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProductDetails(
+                                              productName: snapshot
+                                                  .data!.data[index].itemName
+                                                  .toString(),
+                                              productImage: snapshot
+                                                  .data!.data[index].itemImage,
+                                              productPrice: snapshot
+                                                  .data!.data[index].sellPrice,
+                                              productDescription: snapshot
+                                                  .data!.data[index].itemDes,
+                                            ),
+                                          )),
+                                      child: Container(
+                                        width: screenSize.width,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(snapshot
+                                                .data!.data[index].itemImage),
+                                          ),
                                         ),
-                                      )),
-                                  child: Container(
-                                    width: screenSize.width,
-                                    height: 80,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(snapshot
-                                            .data!.data[index].itemImage),
                                       ),
                                     ),
-                                  ),
+                                    CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(Icons.favorite_outline)),
+                                    )
+                                  ],
                                 ),
+                                SizedBox(height: 5),
                                 TextCustome(
                                     text: snapshot.data!.data[index].itemName),
                                 Text(
                                     "${snapshot.data!.data[index].sellPrice}TK / KG"),
-                                TextButton.icon(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.shopping_cart_outlined),
-                                  label: TextCustome(text: 'Add to cart'),
-                                )
+                                SizedBox(height: 8),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.shopping_cart_outlined,
+                                        color: primaryColor),
+                                    TextCustome(text: 'Add to cart')
+                                  ],
+                                ),
                               ],
                             ),
                           ),
