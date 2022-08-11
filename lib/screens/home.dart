@@ -5,12 +5,16 @@ import 'package:deshbangla_fatch_api/model/product_model.dart';
 import 'package:deshbangla_fatch_api/screens/banner.dart';
 import 'package:deshbangla_fatch_api/screens/category_product.dart';
 import 'package:deshbangla_fatch_api/screens/drawer.dart';
+import 'package:deshbangla_fatch_api/screens/product_details.dart';
 import 'package:deshbangla_fatch_api/services/category.dart';
 import 'package:deshbangla_fatch_api/services/product.dart';
 import 'package:deshbangla_fatch_api/widgets/appbar.dart';
 import 'package:deshbangla_fatch_api/widgets/button.dart';
+import 'package:deshbangla_fatch_api/widgets/category_shimmer.dart';
 import 'package:deshbangla_fatch_api/widgets/text_field.dart';
+import 'package:deshbangla_fatch_api/widgets/top_selling_shimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -56,9 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder:
                     (BuildContext context, AsyncSnapshot<Category> snapshot) {
                   if (snapshot.data == null) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return CategoryShimmer();
                   } else {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -140,9 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
               future: getProductData(),
               builder: (BuildContext context, AsyncSnapshot<Product> snapshot) {
                 if (snapshot.data == null) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return TopSellingShimmer();
                 } else {
                   return Container(
                     margin: EdgeInsets.only(left: 8, right: 8),
@@ -160,14 +160,29 @@ class _HomeScreenState extends State<HomeScreen> {
                             alignment: Alignment.center,
                             child: Column(
                               children: [
-                                Container(
-                                  width: screenSize.width,
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                          snapshot.data!.data[index].itemImage),
+                                InkWell(
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ProductDetails(
+                                          productName: snapshot
+                                              .data!.data[index].itemName
+                                              .toString(),
+                                          productImage: snapshot
+                                              .data!.data[index].itemImage,
+                                          productPrice: snapshot
+                                              .data!.data[index].sellPrice,
+                                        ),
+                                      )),
+                                  child: Container(
+                                    width: screenSize.width,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(snapshot
+                                            .data!.data[index].itemImage),
+                                      ),
                                     ),
                                   ),
                                 ),
