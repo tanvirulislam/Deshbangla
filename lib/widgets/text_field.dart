@@ -9,7 +9,7 @@ class TextCustome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(color: primaryColor),
+      style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
     );
   }
 }

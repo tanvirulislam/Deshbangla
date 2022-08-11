@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_null_comparison
 
+import 'package:deshbangla_fatch_api/const.dart';
 import 'package:deshbangla_fatch_api/model/category_model.dart';
 import 'package:deshbangla_fatch_api/model/product_model.dart';
 import 'package:deshbangla_fatch_api/screens/banner.dart';
@@ -80,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 5,
+                                    spreadRadius: 3,
                                     blurRadius: 7,
                                     offset: Offset(0, 3),
                                   ),
@@ -89,37 +90,31 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: InkWell(
-                                        onTap: () => Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  CategoryProduct(
-                                                categoryImage: snapshot
-                                                    .data!.data[index].image,
-                                                categoryName: snapshot
-                                                    .data!.data[index].name,
-                                              ),
-                                            )),
-                                        child: Container(
-                                          height: 100,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              3,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(13),
-                                            image: DecorationImage(
-                                              image: NetworkImage(snapshot
-                                                  .data!.data[index].image),
-                                              fit: BoxFit.fill,
-                                            ),
+                                  InkWell(
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => CategoryProduct(
+                                            categoryImage: snapshot
+                                                .data!.data[index].image,
+                                            categoryName:
+                                                snapshot.data!.data[index].name,
                                           ),
+                                        )),
+                                    child: Container(
+                                      height: 100,
+                                      width:
+                                          MediaQuery.of(context).size.width / 3,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(13),
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              snapshot.data!.data[index].image),
+                                          fit: BoxFit.cover,
                                         ),
-                                      )),
+                                      ),
+                                    ),
+                                  ),
                                   TextCustome(
                                       text: snapshot.data!.data[index].name)
                                 ],
@@ -134,10 +129,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Center(
-                child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: TextCustome(text: 'Top SELLING'),
-            )),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Text('Top SELLING',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: primaryColor)),
+              ),
+            ),
             FutureBuilder(
               future: getProductData(),
               builder: (BuildContext context, AsyncSnapshot<Product> snapshot) {
@@ -172,6 +170,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               .data!.data[index].itemImage,
                                           productPrice: snapshot
                                               .data!.data[index].sellPrice,
+                                          productDescription: snapshot
+                                              .data!.data[index].itemDes,
                                         ),
                                       )),
                                   child: Container(
@@ -191,9 +191,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Text(
                                     "${snapshot.data!.data[index].sellPrice}TK / KG"),
                                 TextButton.icon(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.shopping_cart_outlined),
-                                    label: TextCustome(text: 'Add to cart'))
+                                  onPressed: () {},
+                                  icon: Icon(Icons.shopping_cart_outlined),
+                                  label: TextCustome(text: 'Add to cart'),
+                                )
                               ],
                             ),
                           ),
