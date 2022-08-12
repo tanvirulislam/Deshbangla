@@ -150,7 +150,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemCount: snapshot.data!.data.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Card(
-                          // margin: EdgeInsets.all(value),
                           elevation: 4,
                           child: Container(
                             alignment: Alignment.center,

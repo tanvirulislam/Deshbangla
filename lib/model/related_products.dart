@@ -4,35 +4,19 @@
 
 import 'dart:convert';
 
-RelatedFish relatedFishFromJson(String str) =>
-    RelatedFish.fromJson(json.decode(str));
+List<RelatedFish> relatedFishFromJson(String str) => List<RelatedFish>.from(
+    json.decode(str).map((x) => RelatedFish.fromJson(x)));
 
-String relatedFishToJson(RelatedFish data) => json.encode(data.toJson());
+String relatedFishToJson(List<RelatedFish> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class RelatedFish {
   RelatedFish({
-    required this.relatedFish,
-  });
-
-  List<RelatedFishElement> relatedFish;
-
-  factory RelatedFish.fromJson(Map<String, dynamic> json) => RelatedFish(
-        relatedFish: List<RelatedFishElement>.from(
-            json["related_fish"].map((x) => RelatedFishElement.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "related_fish": List<dynamic>.from(relatedFish.map((x) => x.toJson())),
-      };
-}
-
-class RelatedFishElement {
-  RelatedFishElement({
     required this.id,
-    this.userPostId,
-    // this.categorySlug,
+    required this.userPostId,
+    // required this.categorySlug,
     required this.subcategorySlug,
-    // this.storeId,
+    // required this.storeId,
     required this.name,
     required this.productSlug,
     required this.desp,
@@ -63,8 +47,7 @@ class RelatedFishElement {
   DateTime createdAt;
   DateTime updatedAt;
 
-  factory RelatedFishElement.fromJson(Map<String, dynamic> json) =>
-      RelatedFishElement(
+  factory RelatedFish.fromJson(Map<String, dynamic> json) => RelatedFish(
         id: json["id"],
         userPostId: json["user_post_id"],
         // categorySlug: categorySlugValues.map[json["category_slug"]],
