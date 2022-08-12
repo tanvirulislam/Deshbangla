@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: PreferredSize(
           preferredSize: Size(
             MediaQuery.of(context).size.width,
-            70,
+            65,
           ),
           child: AppbarCustome(),
         ),
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               children: [
                                 Stack(
-                                  alignment: Alignment(1, -1),
+                                  alignment: Alignment(.9, -.9),
                                   children: [
                                     InkWell(
                                       onTap: () => Navigator.push(
@@ -174,6 +174,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   .data!.data[index].sellPrice,
                                               productDescription: snapshot
                                                   .data!.data[index].itemDes,
+                                              productId:
+                                                  snapshot.data!.data[index].id,
                                             ),
                                           )),
                                       child: Container(

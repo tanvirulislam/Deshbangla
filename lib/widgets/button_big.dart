@@ -20,7 +20,7 @@ class ButtonBig extends StatelessWidget {
     return InkWell(
       onTap: ontap,
       child: Container(
-        height: 60,
+        height: 55,
         width: screenSize.width,
         alignment: Alignment.center,
         decoration: BoxDecoration(

@@ -16,6 +16,7 @@ class AppbarCustome extends StatelessWidget {
         child: Image.asset(
           'assets/logo.png',
           width: 150,
+          fit: BoxFit.cover,
         ),
       ),
       iconTheme: IconThemeData(color: Colors.green),

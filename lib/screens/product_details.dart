@@ -1,15 +1,20 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:convert';
+
 import 'package:deshbangla_fatch_api/const.dart';
+import 'package:deshbangla_fatch_api/model/product_details.dart';
 import 'package:deshbangla_fatch_api/widgets/button_big.dart';
 import 'package:deshbangla_fatch_api/widgets/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class ProductDetails extends StatefulWidget {
   String productName;
   String productImage;
   String productPrice;
   String productDescription;
+  int productId;
 
   ProductDetails({
     Key? key,
@@ -17,6 +22,7 @@ class ProductDetails extends StatefulWidget {
     required this.productImage,
     required this.productPrice,
     required this.productDescription,
+    required this.productId,
   }) : super(key: key);
 
   @override
@@ -24,10 +30,22 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  // Future<ProductDetails> getProductDetailsData() async {
+  //   var response = await http
+  //       .get(Uri.parse('https://banglafishshrimp.com/api/product-detail/97'));
+  //   var data = jsonDecode(response.body.toString());
+  //   if (response.statusCode == 200) {
+  //     return ProductDetails.;
+  //   }else{
+  //     return ProductDetails.fromJson(data);
+
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     bool isBool = false;
-    print(isBool);
+    // print(isBool);
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
