@@ -1,4 +1,4 @@
-import 'package:deshbangla_fatch_api/const.dart';
+import 'package:shrimp/const.dart';
 import 'package:flutter/material.dart';
 
 class TextCustome extends StatelessWidget {

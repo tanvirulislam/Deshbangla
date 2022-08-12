@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:deshbangla_fatch_api/model/category_product.dart';
+import 'package:shrimp/model/category_product.dart';
 import 'package:http/http.dart' as http;
 
 Future<CategoryProduct> getCatProData() async {

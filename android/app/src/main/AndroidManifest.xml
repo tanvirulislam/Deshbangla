@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.deshbangla_fatch_api">
+    package="com.example.shrimp">
    <application
-        android:label="Deshbangla"
+        android:label="DeshBangla"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,4 +1,4 @@
-package com.example.deshbangla_fatch_api
+package com.example.shrimp
 
 import io.flutter.embedding.android.FlutterActivity
 

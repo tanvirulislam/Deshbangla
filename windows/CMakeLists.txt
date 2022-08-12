@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(deshbangla_fatch_api LANGUAGES CXX)
+project(shrimp LANGUAGES CXX)
 
-set(BINARY_NAME "deshbangla_fatch_api")
+set(BINARY_NAME "shrimp")
 
 cmake_policy(SET CMP0063 NEW)
 

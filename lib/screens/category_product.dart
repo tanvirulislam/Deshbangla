@@ -1,9 +1,9 @@
 // prefer_const_constructors
 
-import 'package:deshbangla_fatch_api/model/category_model.dart';
-import 'package:deshbangla_fatch_api/services/category.dart';
-import 'package:deshbangla_fatch_api/services/category_wise_product.dart';
-import 'package:deshbangla_fatch_api/widgets/text_field.dart';
+import 'package:shrimp/model/category_model.dart';
+import 'package:shrimp/services/category.dart';
+import 'package:shrimp/services/category_wise_product.dart';
+import 'package:shrimp/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
 class CategoryProduct extends StatefulWidget {

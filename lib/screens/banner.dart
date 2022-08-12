@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names, prefer_const_literals_to_create_immutables
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:deshbangla_fatch_api/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:shrimp/widgets/button.dart';
 
 Widget SliderDeshbangla() {
   List<String> sliderPhoto = [

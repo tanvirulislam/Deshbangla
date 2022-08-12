@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:deshbangla_fatch_api/const.dart';
-import 'package:deshbangla_fatch_api/widgets/text_field.dart';
+import 'package:shrimp/const.dart';
+import 'package:shrimp/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
 class DrawerScreen extends StatelessWidget {

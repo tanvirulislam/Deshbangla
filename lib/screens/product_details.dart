@@ -2,12 +2,12 @@
 
 import 'dart:convert';
 
-import 'package:deshbangla_fatch_api/const.dart';
-import 'package:deshbangla_fatch_api/model/product_details.dart';
-import 'package:deshbangla_fatch_api/widgets/button_big.dart';
-import 'package:deshbangla_fatch_api/widgets/text_field.dart';
+import 'package:shrimp/const.dart';
+import 'package:shrimp/model/related_products.dart';
+import 'package:shrimp/services/related_fish.dart';
+import 'package:shrimp/widgets/button_big.dart';
+import 'package:shrimp/widgets/text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class ProductDetails extends StatefulWidget {
   String productName;
@@ -30,18 +30,6 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  // Future<ProductDetails> getProductDetailsData() async {
-  //   var response = await http
-  //       .get(Uri.parse('https://banglafishshrimp.com/api/product-detail/97'));
-  //   var data = jsonDecode(response.body.toString());
-  //   if (response.statusCode == 200) {
-  //     return ProductDetails.;
-  //   }else{
-  //     return ProductDetails.fromJson(data);
-
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     bool isBool = false;
@@ -128,6 +116,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                   style: TextStyle(color: primaryColor), textScaleFactor: 1.4),
             ),
             SizedBox(height: 8),
+            FutureBuilder(
+              future: getRelatedFish(),
+              builder:
+                  (BuildContext context, AsyncSnapshot<RelatedFish> snapshot) {
+                if (snapshot.data == null) {
+                  return Center(
+                    child: Text('data not found'),
+                  );
+                } else {
+                  return Text('data');
+                }
+              },
+            ),
           ],
         ),
       ),

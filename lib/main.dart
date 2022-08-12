@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:deshbangla_fatch_api/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:shrimp/screens/home.dart';
 
 void main() {
   runApp(const MyApp());

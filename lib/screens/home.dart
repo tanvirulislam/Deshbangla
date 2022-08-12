@@ -1,19 +1,19 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_null_comparison
 
-import 'package:deshbangla_fatch_api/const.dart';
-import 'package:deshbangla_fatch_api/model/category_model.dart';
-import 'package:deshbangla_fatch_api/model/product_model.dart';
-import 'package:deshbangla_fatch_api/screens/banner.dart';
-import 'package:deshbangla_fatch_api/screens/category_product.dart';
-import 'package:deshbangla_fatch_api/screens/drawer.dart';
-import 'package:deshbangla_fatch_api/screens/product_details.dart';
-import 'package:deshbangla_fatch_api/services/category.dart';
-import 'package:deshbangla_fatch_api/services/product.dart';
-import 'package:deshbangla_fatch_api/widgets/appbar.dart';
-import 'package:deshbangla_fatch_api/widgets/button.dart';
-import 'package:deshbangla_fatch_api/widgets/category_shimmer.dart';
-import 'package:deshbangla_fatch_api/widgets/text_field.dart';
-import 'package:deshbangla_fatch_api/widgets/top_selling_shimmer.dart';
+import 'package:shrimp/const.dart';
+import 'package:shrimp/model/category_model.dart';
+import 'package:shrimp/model/product_model.dart';
+import 'package:shrimp/screens/banner.dart';
+import 'package:shrimp/screens/category_product.dart';
+import 'package:shrimp/screens/drawer.dart';
+import 'package:shrimp/screens/product_details.dart';
+import 'package:shrimp/services/category.dart';
+import 'package:shrimp/services/product.dart';
+import 'package:shrimp/widgets/appbar.dart';
+import 'package:shrimp/widgets/button.dart';
+import 'package:shrimp/widgets/category_shimmer.dart';
+import 'package:shrimp/widgets/text_field.dart';
+import 'package:shrimp/widgets/top_selling_shimmer.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

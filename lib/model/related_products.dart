@@ -1,25 +1,24 @@
 // To parse this JSON data, do
 //
-//     final productDetails = productDetailsFromJson(jsonString);
+//     final relatedFish = relatedFishFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
-ProductDetails productDetailsFromJson(String str) =>
-    ProductDetails.fromJson(json.decode(str));
+RelatedFish relatedFishFromJson(String str) =>
+    RelatedFish.fromJson(json.decode(str));
 
-String productDetailsToJson(ProductDetails data) => json.encode(data.toJson());
+String relatedFishToJson(RelatedFish data) => json.encode(data.toJson());
 
-class ProductDetails {
-  ProductDetails({
+class RelatedFish {
+  RelatedFish({
     required this.relatedFish,
   });
 
-  List<RelatedFish> relatedFish;
+  List<RelatedFishElement> relatedFish;
 
-  factory ProductDetails.fromJson(Map<String, dynamic> json) => ProductDetails(
-        relatedFish: List<RelatedFish>.from(
-            json["related_fish"].map((x) => RelatedFish.fromJson(x))),
+  factory RelatedFish.fromJson(Map<String, dynamic> json) => RelatedFish(
+        relatedFish: List<RelatedFishElement>.from(
+            json["related_fish"].map((x) => RelatedFishElement.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -27,13 +26,13 @@ class ProductDetails {
       };
 }
 
-class RelatedFish {
-  RelatedFish({
+class RelatedFishElement {
+  RelatedFishElement({
     required this.id,
-    required this.userPostId,
-    // required this.categorySlug,
+    this.userPostId,
+    // this.categorySlug,
     required this.subcategorySlug,
-    // required this.storeId,
+    // this.storeId,
     required this.name,
     required this.productSlug,
     required this.desp,
@@ -49,9 +48,9 @@ class RelatedFish {
 
   int id;
   dynamic userPostId;
-  // var categorySlug;
+  // CategorySlug categorySlug;
   String subcategorySlug;
-  // var storeId;
+  // StoreId storeId;
   String name;
   String productSlug;
   String desp;
@@ -64,7 +63,8 @@ class RelatedFish {
   DateTime createdAt;
   DateTime updatedAt;
 
-  factory RelatedFish.fromJson(Map<String, dynamic> json) => RelatedFish(
+  factory RelatedFishElement.fromJson(Map<String, dynamic> json) =>
+      RelatedFishElement(
         id: json["id"],
         userPostId: json["user_post_id"],
         // categorySlug: categorySlugValues.map[json["category_slug"]],
@@ -103,14 +103,14 @@ class RelatedFish {
       };
 }
 
-enum CategorySlug { READY_TO_COOK_1, CHILLED_CONDITION }
+// enum CategorySlug { READY_TO_COOK_1, CHILLED_CONDITION }
 
 // final categorySlugValues = EnumValues({
 //   "chilled-condition": CategorySlug.CHILLED_CONDITION,
 //   "ready-to-cook-1": CategorySlug.READY_TO_COOK_1
 // });
 
-enum StoreId { KHULNA_STORE, KHULNA_STORE_SELECTED }
+// enum StoreId { KHULNA_STORE, KHULNA_STORE_SELECTED }
 
 // final storeIdValues = EnumValues({
 //   "khulna-store": StoreId.KHULNA_STORE,
