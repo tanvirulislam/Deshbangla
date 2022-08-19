@@ -89,15 +89,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 InkWell(
                                   onTap: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => CategoryProduct(
-                                          categoryImage:
-                                              snapshot.data!.data[index].image,
-                                          categoryName:
-                                              snapshot.data!.data[index].name,
-                                        ),
-                                      )),
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CategoryWiseProduct(
+                                        categoryImage:
+                                            snapshot.data!.data[index].image,
+                                        categoryName:
+                                            snapshot.data!.data[index].name,
+                                      ),
+                                    ),
+                                  ),
                                   child: Container(
                                     height: 110,
                                     width:
